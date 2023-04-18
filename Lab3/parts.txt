@@ -1,0 +1,7 @@
+| '(' expr '^' '('pownum '/' pownum ')' ')' '^' pownum  { rpn += " ^ / ^"; 
+                                                                if($7 == $11 ) {
+                                                                    $$ = zp_pow($1, $5);
+                                                                } else {
+                                                                    $$ = zp_pow($1, (zp_divpow($5, $9)*$11)%P);
+                                                                }
+                                                            }

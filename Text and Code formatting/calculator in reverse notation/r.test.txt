@@ -1,0 +1,28 @@
+23+4*
+= 20
+1234+*-
+= -13
+-12-34+*-
+= -3
+8-76-54*-3%/-+
+= 4
+232^^
+= 512
+23+*
+Błąd zbyt mało argumentów.
+ 234+
+Błąd: zła ilość operatorów.
+2
+Błąd: zły symbol .
+43+
+Zbyt mało argumentów
+55++
+Błąd zbyt mało argumentów.
+ 5 5 - -55++
+Błąd zbyt mało argumentów.
+ 5 5 -20%
+Błąd: nie dziel przez 0!
+20/
+Błąd: nie dziel przez 0!
+00/
+Błąd: nie dziel przez 0!

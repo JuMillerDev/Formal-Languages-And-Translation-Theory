@@ -1,0 +1,832 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> line
+Rule 1     line -> expr ENDL
+Rule 2     line -> error ENDL
+Rule 3     expr -> number
+Rule 4     expr2 -> pownum
+Rule 5     expr -> LPAREN expr RPAREN
+Rule 6     expr2 -> LPAREN expr2 RPAREN
+Rule 7     expr -> SUB LPAREN expr RPAREN
+Rule 8     expr2 -> SUB LPAREN expr2 RPAREN
+Rule 9     expr -> expr ADD expr
+Rule 10    expr2 -> expr2 ADD expr2
+Rule 11    expr -> expr SUB expr
+Rule 12    expr2 -> expr2 SUB expr2
+Rule 13    expr -> expr MUL expr
+Rule 14    expr2 -> expr2 MUL expr2
+Rule 15    expr -> expr POW expr2
+Rule 16    expr -> expr DIV expr
+Rule 17    expr2 -> expr2 DIV expr2
+Rule 18    number -> NUM
+Rule 19    number -> SUB number
+Rule 20    pownum -> NUM
+Rule 21    pownum -> SUB pownum
+
+Terminals, with rules where they appear
+
+ADD                  : 9 10
+DIV                  : 16 17
+ENDL                 : 1 2
+LPAREN               : 5 6 7 8
+MUL                  : 13 14
+NUM                  : 18 20
+POW                  : 15
+RPAREN               : 5 6 7 8
+SUB                  : 7 8 11 12 19 21
+error                : 2
+
+Nonterminals, with rules where they appear
+
+expr                 : 1 5 7 9 9 11 11 13 13 15 16 16
+expr2                : 6 8 10 10 12 12 14 14 15 17 17
+line                 : 0
+number               : 3 19
+pownum               : 4 21
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . line
+    (1) line -> . expr ENDL
+    (2) line -> . error ENDL
+    (3) expr -> . number
+    (5) expr -> . LPAREN expr RPAREN
+    (7) expr -> . SUB LPAREN expr RPAREN
+    (9) expr -> . expr ADD expr
+    (11) expr -> . expr SUB expr
+    (13) expr -> . expr MUL expr
+    (15) expr -> . expr POW expr2
+    (16) expr -> . expr DIV expr
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    error           shift and go to state 3
+    LPAREN          shift and go to state 5
+    SUB             shift and go to state 6
+    NUM             shift and go to state 7
+
+    line                           shift and go to state 1
+    expr                           shift and go to state 2
+    number                         shift and go to state 4
+
+state 1
+
+    (0) S' -> line .
+
+
+
+state 2
+
+    (1) line -> expr . ENDL
+    (9) expr -> expr . ADD expr
+    (11) expr -> expr . SUB expr
+    (13) expr -> expr . MUL expr
+    (15) expr -> expr . POW expr2
+    (16) expr -> expr . DIV expr
+
+    ENDL            shift and go to state 8
+    ADD             shift and go to state 9
+    SUB             shift and go to state 10
+    MUL             shift and go to state 11
+    POW             shift and go to state 12
+    DIV             shift and go to state 13
+
+
+state 3
+
+    (2) line -> error . ENDL
+
+    ENDL            shift and go to state 14
+
+
+state 4
+
+    (3) expr -> number .
+
+    ENDL            reduce using rule 3 (expr -> number .)
+    ADD             reduce using rule 3 (expr -> number .)
+    SUB             reduce using rule 3 (expr -> number .)
+    MUL             reduce using rule 3 (expr -> number .)
+    POW             reduce using rule 3 (expr -> number .)
+    DIV             reduce using rule 3 (expr -> number .)
+    RPAREN          reduce using rule 3 (expr -> number .)
+
+
+state 5
+
+    (5) expr -> LPAREN . expr RPAREN
+    (3) expr -> . number
+    (5) expr -> . LPAREN expr RPAREN
+    (7) expr -> . SUB LPAREN expr RPAREN
+    (9) expr -> . expr ADD expr
+    (11) expr -> . expr SUB expr
+    (13) expr -> . expr MUL expr
+    (15) expr -> . expr POW expr2
+    (16) expr -> . expr DIV expr
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    LPAREN          shift and go to state 5
+    SUB             shift and go to state 6
+    NUM             shift and go to state 7
+
+    expr                           shift and go to state 15
+    number                         shift and go to state 4
+
+state 6
+
+    (7) expr -> SUB . LPAREN expr RPAREN
+    (19) number -> SUB . number
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    LPAREN          shift and go to state 17
+    NUM             shift and go to state 7
+    SUB             shift and go to state 16
+
+    number                         shift and go to state 18
+
+state 7
+
+    (18) number -> NUM .
+
+    ENDL            reduce using rule 18 (number -> NUM .)
+    ADD             reduce using rule 18 (number -> NUM .)
+    SUB             reduce using rule 18 (number -> NUM .)
+    MUL             reduce using rule 18 (number -> NUM .)
+    POW             reduce using rule 18 (number -> NUM .)
+    DIV             reduce using rule 18 (number -> NUM .)
+    RPAREN          reduce using rule 18 (number -> NUM .)
+
+
+state 8
+
+    (1) line -> expr ENDL .
+
+    $end            reduce using rule 1 (line -> expr ENDL .)
+
+
+state 9
+
+    (9) expr -> expr ADD . expr
+    (3) expr -> . number
+    (5) expr -> . LPAREN expr RPAREN
+    (7) expr -> . SUB LPAREN expr RPAREN
+    (9) expr -> . expr ADD expr
+    (11) expr -> . expr SUB expr
+    (13) expr -> . expr MUL expr
+    (15) expr -> . expr POW expr2
+    (16) expr -> . expr DIV expr
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    LPAREN          shift and go to state 5
+    SUB             shift and go to state 6
+    NUM             shift and go to state 7
+
+    expr                           shift and go to state 19
+    number                         shift and go to state 4
+
+state 10
+
+    (11) expr -> expr SUB . expr
+    (3) expr -> . number
+    (5) expr -> . LPAREN expr RPAREN
+    (7) expr -> . SUB LPAREN expr RPAREN
+    (9) expr -> . expr ADD expr
+    (11) expr -> . expr SUB expr
+    (13) expr -> . expr MUL expr
+    (15) expr -> . expr POW expr2
+    (16) expr -> . expr DIV expr
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    LPAREN          shift and go to state 5
+    SUB             shift and go to state 6
+    NUM             shift and go to state 7
+
+    expr                           shift and go to state 20
+    number                         shift and go to state 4
+
+state 11
+
+    (13) expr -> expr MUL . expr
+    (3) expr -> . number
+    (5) expr -> . LPAREN expr RPAREN
+    (7) expr -> . SUB LPAREN expr RPAREN
+    (9) expr -> . expr ADD expr
+    (11) expr -> . expr SUB expr
+    (13) expr -> . expr MUL expr
+    (15) expr -> . expr POW expr2
+    (16) expr -> . expr DIV expr
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    LPAREN          shift and go to state 5
+    SUB             shift and go to state 6
+    NUM             shift and go to state 7
+
+    expr                           shift and go to state 21
+    number                         shift and go to state 4
+
+state 12
+
+    (15) expr -> expr POW . expr2
+    (4) expr2 -> . pownum
+    (6) expr2 -> . LPAREN expr2 RPAREN
+    (8) expr2 -> . SUB LPAREN expr2 RPAREN
+    (10) expr2 -> . expr2 ADD expr2
+    (12) expr2 -> . expr2 SUB expr2
+    (14) expr2 -> . expr2 MUL expr2
+    (17) expr2 -> . expr2 DIV expr2
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    LPAREN          shift and go to state 24
+    SUB             shift and go to state 25
+    NUM             shift and go to state 26
+
+    expr2                          shift and go to state 22
+    pownum                         shift and go to state 23
+
+state 13
+
+    (16) expr -> expr DIV . expr
+    (3) expr -> . number
+    (5) expr -> . LPAREN expr RPAREN
+    (7) expr -> . SUB LPAREN expr RPAREN
+    (9) expr -> . expr ADD expr
+    (11) expr -> . expr SUB expr
+    (13) expr -> . expr MUL expr
+    (15) expr -> . expr POW expr2
+    (16) expr -> . expr DIV expr
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    LPAREN          shift and go to state 5
+    SUB             shift and go to state 6
+    NUM             shift and go to state 7
+
+    expr                           shift and go to state 27
+    number                         shift and go to state 4
+
+state 14
+
+    (2) line -> error ENDL .
+
+    $end            reduce using rule 2 (line -> error ENDL .)
+
+
+state 15
+
+    (5) expr -> LPAREN expr . RPAREN
+    (9) expr -> expr . ADD expr
+    (11) expr -> expr . SUB expr
+    (13) expr -> expr . MUL expr
+    (15) expr -> expr . POW expr2
+    (16) expr -> expr . DIV expr
+
+    RPAREN          shift and go to state 28
+    ADD             shift and go to state 9
+    SUB             shift and go to state 10
+    MUL             shift and go to state 11
+    POW             shift and go to state 12
+    DIV             shift and go to state 13
+
+
+state 16
+
+    (19) number -> SUB . number
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    NUM             shift and go to state 7
+    SUB             shift and go to state 16
+
+    number                         shift and go to state 18
+
+state 17
+
+    (7) expr -> SUB LPAREN . expr RPAREN
+    (3) expr -> . number
+    (5) expr -> . LPAREN expr RPAREN
+    (7) expr -> . SUB LPAREN expr RPAREN
+    (9) expr -> . expr ADD expr
+    (11) expr -> . expr SUB expr
+    (13) expr -> . expr MUL expr
+    (15) expr -> . expr POW expr2
+    (16) expr -> . expr DIV expr
+    (18) number -> . NUM
+    (19) number -> . SUB number
+
+    LPAREN          shift and go to state 5
+    SUB             shift and go to state 6
+    NUM             shift and go to state 7
+
+    expr                           shift and go to state 29
+    number                         shift and go to state 4
+
+state 18
+
+    (19) number -> SUB number .
+
+    ENDL            reduce using rule 19 (number -> SUB number .)
+    ADD             reduce using rule 19 (number -> SUB number .)
+    SUB             reduce using rule 19 (number -> SUB number .)
+    MUL             reduce using rule 19 (number -> SUB number .)
+    POW             reduce using rule 19 (number -> SUB number .)
+    DIV             reduce using rule 19 (number -> SUB number .)
+    RPAREN          reduce using rule 19 (number -> SUB number .)
+
+
+state 19
+
+    (9) expr -> expr ADD expr .
+    (9) expr -> expr . ADD expr
+    (11) expr -> expr . SUB expr
+    (13) expr -> expr . MUL expr
+    (15) expr -> expr . POW expr2
+    (16) expr -> expr . DIV expr
+
+    ENDL            reduce using rule 9 (expr -> expr ADD expr .)
+    ADD             reduce using rule 9 (expr -> expr ADD expr .)
+    SUB             reduce using rule 9 (expr -> expr ADD expr .)
+    RPAREN          reduce using rule 9 (expr -> expr ADD expr .)
+    MUL             shift and go to state 11
+    POW             shift and go to state 12
+    DIV             shift and go to state 13
+
+  ! MUL             [ reduce using rule 9 (expr -> expr ADD expr .) ]
+  ! POW             [ reduce using rule 9 (expr -> expr ADD expr .) ]
+  ! DIV             [ reduce using rule 9 (expr -> expr ADD expr .) ]
+  ! ADD             [ shift and go to state 9 ]
+  ! SUB             [ shift and go to state 10 ]
+
+
+state 20
+
+    (11) expr -> expr SUB expr .
+    (9) expr -> expr . ADD expr
+    (11) expr -> expr . SUB expr
+    (13) expr -> expr . MUL expr
+    (15) expr -> expr . POW expr2
+    (16) expr -> expr . DIV expr
+
+    ENDL            reduce using rule 11 (expr -> expr SUB expr .)
+    ADD             reduce using rule 11 (expr -> expr SUB expr .)
+    SUB             reduce using rule 11 (expr -> expr SUB expr .)
+    RPAREN          reduce using rule 11 (expr -> expr SUB expr .)
+    MUL             shift and go to state 11
+    POW             shift and go to state 12
+    DIV             shift and go to state 13
+
+  ! MUL             [ reduce using rule 11 (expr -> expr SUB expr .) ]
+  ! POW             [ reduce using rule 11 (expr -> expr SUB expr .) ]
+  ! DIV             [ reduce using rule 11 (expr -> expr SUB expr .) ]
+  ! ADD             [ shift and go to state 9 ]
+  ! SUB             [ shift and go to state 10 ]
+
+
+state 21
+
+    (13) expr -> expr MUL expr .
+    (9) expr -> expr . ADD expr
+    (11) expr -> expr . SUB expr
+    (13) expr -> expr . MUL expr
+    (15) expr -> expr . POW expr2
+    (16) expr -> expr . DIV expr
+
+    ENDL            reduce using rule 13 (expr -> expr MUL expr .)
+    ADD             reduce using rule 13 (expr -> expr MUL expr .)
+    SUB             reduce using rule 13 (expr -> expr MUL expr .)
+    MUL             reduce using rule 13 (expr -> expr MUL expr .)
+    DIV             reduce using rule 13 (expr -> expr MUL expr .)
+    RPAREN          reduce using rule 13 (expr -> expr MUL expr .)
+    POW             shift and go to state 12
+
+  ! POW             [ reduce using rule 13 (expr -> expr MUL expr .) ]
+  ! ADD             [ shift and go to state 9 ]
+  ! SUB             [ shift and go to state 10 ]
+  ! MUL             [ shift and go to state 11 ]
+  ! DIV             [ shift and go to state 13 ]
+
+
+state 22
+
+    (15) expr -> expr POW expr2 .
+    (10) expr2 -> expr2 . ADD expr2
+    (12) expr2 -> expr2 . SUB expr2
+    (14) expr2 -> expr2 . MUL expr2
+    (17) expr2 -> expr2 . DIV expr2
+
+    ENDL            reduce using rule 15 (expr -> expr POW expr2 .)
+    ADD             reduce using rule 15 (expr -> expr POW expr2 .)
+    SUB             reduce using rule 15 (expr -> expr POW expr2 .)
+    MUL             reduce using rule 15 (expr -> expr POW expr2 .)
+    POW             reduce using rule 15 (expr -> expr POW expr2 .)
+    DIV             reduce using rule 15 (expr -> expr POW expr2 .)
+    RPAREN          reduce using rule 15 (expr -> expr POW expr2 .)
+
+  ! ADD             [ shift and go to state 30 ]
+  ! SUB             [ shift and go to state 31 ]
+  ! MUL             [ shift and go to state 32 ]
+  ! DIV             [ shift and go to state 33 ]
+
+
+state 23
+
+    (4) expr2 -> pownum .
+
+    ADD             reduce using rule 4 (expr2 -> pownum .)
+    SUB             reduce using rule 4 (expr2 -> pownum .)
+    MUL             reduce using rule 4 (expr2 -> pownum .)
+    DIV             reduce using rule 4 (expr2 -> pownum .)
+    ENDL            reduce using rule 4 (expr2 -> pownum .)
+    POW             reduce using rule 4 (expr2 -> pownum .)
+    RPAREN          reduce using rule 4 (expr2 -> pownum .)
+
+
+state 24
+
+    (6) expr2 -> LPAREN . expr2 RPAREN
+    (4) expr2 -> . pownum
+    (6) expr2 -> . LPAREN expr2 RPAREN
+    (8) expr2 -> . SUB LPAREN expr2 RPAREN
+    (10) expr2 -> . expr2 ADD expr2
+    (12) expr2 -> . expr2 SUB expr2
+    (14) expr2 -> . expr2 MUL expr2
+    (17) expr2 -> . expr2 DIV expr2
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    LPAREN          shift and go to state 24
+    SUB             shift and go to state 25
+    NUM             shift and go to state 26
+
+    expr2                          shift and go to state 34
+    pownum                         shift and go to state 23
+
+state 25
+
+    (8) expr2 -> SUB . LPAREN expr2 RPAREN
+    (21) pownum -> SUB . pownum
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    LPAREN          shift and go to state 36
+    NUM             shift and go to state 26
+    SUB             shift and go to state 35
+
+    pownum                         shift and go to state 37
+
+state 26
+
+    (20) pownum -> NUM .
+
+    ADD             reduce using rule 20 (pownum -> NUM .)
+    SUB             reduce using rule 20 (pownum -> NUM .)
+    MUL             reduce using rule 20 (pownum -> NUM .)
+    DIV             reduce using rule 20 (pownum -> NUM .)
+    ENDL            reduce using rule 20 (pownum -> NUM .)
+    POW             reduce using rule 20 (pownum -> NUM .)
+    RPAREN          reduce using rule 20 (pownum -> NUM .)
+
+
+state 27
+
+    (16) expr -> expr DIV expr .
+    (9) expr -> expr . ADD expr
+    (11) expr -> expr . SUB expr
+    (13) expr -> expr . MUL expr
+    (15) expr -> expr . POW expr2
+    (16) expr -> expr . DIV expr
+
+    ENDL            reduce using rule 16 (expr -> expr DIV expr .)
+    ADD             reduce using rule 16 (expr -> expr DIV expr .)
+    SUB             reduce using rule 16 (expr -> expr DIV expr .)
+    MUL             reduce using rule 16 (expr -> expr DIV expr .)
+    DIV             reduce using rule 16 (expr -> expr DIV expr .)
+    RPAREN          reduce using rule 16 (expr -> expr DIV expr .)
+    POW             shift and go to state 12
+
+  ! POW             [ reduce using rule 16 (expr -> expr DIV expr .) ]
+  ! ADD             [ shift and go to state 9 ]
+  ! SUB             [ shift and go to state 10 ]
+  ! MUL             [ shift and go to state 11 ]
+  ! DIV             [ shift and go to state 13 ]
+
+
+state 28
+
+    (5) expr -> LPAREN expr RPAREN .
+
+    ENDL            reduce using rule 5 (expr -> LPAREN expr RPAREN .)
+    ADD             reduce using rule 5 (expr -> LPAREN expr RPAREN .)
+    SUB             reduce using rule 5 (expr -> LPAREN expr RPAREN .)
+    MUL             reduce using rule 5 (expr -> LPAREN expr RPAREN .)
+    POW             reduce using rule 5 (expr -> LPAREN expr RPAREN .)
+    DIV             reduce using rule 5 (expr -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 5 (expr -> LPAREN expr RPAREN .)
+
+
+state 29
+
+    (7) expr -> SUB LPAREN expr . RPAREN
+    (9) expr -> expr . ADD expr
+    (11) expr -> expr . SUB expr
+    (13) expr -> expr . MUL expr
+    (15) expr -> expr . POW expr2
+    (16) expr -> expr . DIV expr
+
+    RPAREN          shift and go to state 38
+    ADD             shift and go to state 9
+    SUB             shift and go to state 10
+    MUL             shift and go to state 11
+    POW             shift and go to state 12
+    DIV             shift and go to state 13
+
+
+state 30
+
+    (10) expr2 -> expr2 ADD . expr2
+    (4) expr2 -> . pownum
+    (6) expr2 -> . LPAREN expr2 RPAREN
+    (8) expr2 -> . SUB LPAREN expr2 RPAREN
+    (10) expr2 -> . expr2 ADD expr2
+    (12) expr2 -> . expr2 SUB expr2
+    (14) expr2 -> . expr2 MUL expr2
+    (17) expr2 -> . expr2 DIV expr2
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    LPAREN          shift and go to state 24
+    SUB             shift and go to state 25
+    NUM             shift and go to state 26
+
+    expr2                          shift and go to state 39
+    pownum                         shift and go to state 23
+
+state 31
+
+    (12) expr2 -> expr2 SUB . expr2
+    (4) expr2 -> . pownum
+    (6) expr2 -> . LPAREN expr2 RPAREN
+    (8) expr2 -> . SUB LPAREN expr2 RPAREN
+    (10) expr2 -> . expr2 ADD expr2
+    (12) expr2 -> . expr2 SUB expr2
+    (14) expr2 -> . expr2 MUL expr2
+    (17) expr2 -> . expr2 DIV expr2
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    LPAREN          shift and go to state 24
+    SUB             shift and go to state 25
+    NUM             shift and go to state 26
+
+    expr2                          shift and go to state 40
+    pownum                         shift and go to state 23
+
+state 32
+
+    (14) expr2 -> expr2 MUL . expr2
+    (4) expr2 -> . pownum
+    (6) expr2 -> . LPAREN expr2 RPAREN
+    (8) expr2 -> . SUB LPAREN expr2 RPAREN
+    (10) expr2 -> . expr2 ADD expr2
+    (12) expr2 -> . expr2 SUB expr2
+    (14) expr2 -> . expr2 MUL expr2
+    (17) expr2 -> . expr2 DIV expr2
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    LPAREN          shift and go to state 24
+    SUB             shift and go to state 25
+    NUM             shift and go to state 26
+
+    expr2                          shift and go to state 41
+    pownum                         shift and go to state 23
+
+state 33
+
+    (17) expr2 -> expr2 DIV . expr2
+    (4) expr2 -> . pownum
+    (6) expr2 -> . LPAREN expr2 RPAREN
+    (8) expr2 -> . SUB LPAREN expr2 RPAREN
+    (10) expr2 -> . expr2 ADD expr2
+    (12) expr2 -> . expr2 SUB expr2
+    (14) expr2 -> . expr2 MUL expr2
+    (17) expr2 -> . expr2 DIV expr2
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    LPAREN          shift and go to state 24
+    SUB             shift and go to state 25
+    NUM             shift and go to state 26
+
+    expr2                          shift and go to state 42
+    pownum                         shift and go to state 23
+
+state 34
+
+    (6) expr2 -> LPAREN expr2 . RPAREN
+    (10) expr2 -> expr2 . ADD expr2
+    (12) expr2 -> expr2 . SUB expr2
+    (14) expr2 -> expr2 . MUL expr2
+    (17) expr2 -> expr2 . DIV expr2
+
+    RPAREN          shift and go to state 43
+    ADD             shift and go to state 30
+    SUB             shift and go to state 31
+    MUL             shift and go to state 32
+    DIV             shift and go to state 33
+
+
+state 35
+
+    (21) pownum -> SUB . pownum
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    NUM             shift and go to state 26
+    SUB             shift and go to state 35
+
+    pownum                         shift and go to state 37
+
+state 36
+
+    (8) expr2 -> SUB LPAREN . expr2 RPAREN
+    (4) expr2 -> . pownum
+    (6) expr2 -> . LPAREN expr2 RPAREN
+    (8) expr2 -> . SUB LPAREN expr2 RPAREN
+    (10) expr2 -> . expr2 ADD expr2
+    (12) expr2 -> . expr2 SUB expr2
+    (14) expr2 -> . expr2 MUL expr2
+    (17) expr2 -> . expr2 DIV expr2
+    (20) pownum -> . NUM
+    (21) pownum -> . SUB pownum
+
+    LPAREN          shift and go to state 24
+    SUB             shift and go to state 25
+    NUM             shift and go to state 26
+
+    expr2                          shift and go to state 44
+    pownum                         shift and go to state 23
+
+state 37
+
+    (21) pownum -> SUB pownum .
+
+    ADD             reduce using rule 21 (pownum -> SUB pownum .)
+    SUB             reduce using rule 21 (pownum -> SUB pownum .)
+    MUL             reduce using rule 21 (pownum -> SUB pownum .)
+    DIV             reduce using rule 21 (pownum -> SUB pownum .)
+    ENDL            reduce using rule 21 (pownum -> SUB pownum .)
+    POW             reduce using rule 21 (pownum -> SUB pownum .)
+    RPAREN          reduce using rule 21 (pownum -> SUB pownum .)
+
+
+state 38
+
+    (7) expr -> SUB LPAREN expr RPAREN .
+
+    ENDL            reduce using rule 7 (expr -> SUB LPAREN expr RPAREN .)
+    ADD             reduce using rule 7 (expr -> SUB LPAREN expr RPAREN .)
+    SUB             reduce using rule 7 (expr -> SUB LPAREN expr RPAREN .)
+    MUL             reduce using rule 7 (expr -> SUB LPAREN expr RPAREN .)
+    POW             reduce using rule 7 (expr -> SUB LPAREN expr RPAREN .)
+    DIV             reduce using rule 7 (expr -> SUB LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 7 (expr -> SUB LPAREN expr RPAREN .)
+
+
+state 39
+
+    (10) expr2 -> expr2 ADD expr2 .
+    (10) expr2 -> expr2 . ADD expr2
+    (12) expr2 -> expr2 . SUB expr2
+    (14) expr2 -> expr2 . MUL expr2
+    (17) expr2 -> expr2 . DIV expr2
+
+    ADD             reduce using rule 10 (expr2 -> expr2 ADD expr2 .)
+    SUB             reduce using rule 10 (expr2 -> expr2 ADD expr2 .)
+    ENDL            reduce using rule 10 (expr2 -> expr2 ADD expr2 .)
+    POW             reduce using rule 10 (expr2 -> expr2 ADD expr2 .)
+    RPAREN          reduce using rule 10 (expr2 -> expr2 ADD expr2 .)
+    MUL             shift and go to state 32
+    DIV             shift and go to state 33
+
+  ! MUL             [ reduce using rule 10 (expr2 -> expr2 ADD expr2 .) ]
+  ! DIV             [ reduce using rule 10 (expr2 -> expr2 ADD expr2 .) ]
+  ! ADD             [ shift and go to state 30 ]
+  ! SUB             [ shift and go to state 31 ]
+
+
+state 40
+
+    (12) expr2 -> expr2 SUB expr2 .
+    (10) expr2 -> expr2 . ADD expr2
+    (12) expr2 -> expr2 . SUB expr2
+    (14) expr2 -> expr2 . MUL expr2
+    (17) expr2 -> expr2 . DIV expr2
+
+    ADD             reduce using rule 12 (expr2 -> expr2 SUB expr2 .)
+    SUB             reduce using rule 12 (expr2 -> expr2 SUB expr2 .)
+    ENDL            reduce using rule 12 (expr2 -> expr2 SUB expr2 .)
+    POW             reduce using rule 12 (expr2 -> expr2 SUB expr2 .)
+    RPAREN          reduce using rule 12 (expr2 -> expr2 SUB expr2 .)
+    MUL             shift and go to state 32
+    DIV             shift and go to state 33
+
+  ! MUL             [ reduce using rule 12 (expr2 -> expr2 SUB expr2 .) ]
+  ! DIV             [ reduce using rule 12 (expr2 -> expr2 SUB expr2 .) ]
+  ! ADD             [ shift and go to state 30 ]
+  ! SUB             [ shift and go to state 31 ]
+
+
+state 41
+
+    (14) expr2 -> expr2 MUL expr2 .
+    (10) expr2 -> expr2 . ADD expr2
+    (12) expr2 -> expr2 . SUB expr2
+    (14) expr2 -> expr2 . MUL expr2
+    (17) expr2 -> expr2 . DIV expr2
+
+    ADD             reduce using rule 14 (expr2 -> expr2 MUL expr2 .)
+    SUB             reduce using rule 14 (expr2 -> expr2 MUL expr2 .)
+    MUL             reduce using rule 14 (expr2 -> expr2 MUL expr2 .)
+    DIV             reduce using rule 14 (expr2 -> expr2 MUL expr2 .)
+    ENDL            reduce using rule 14 (expr2 -> expr2 MUL expr2 .)
+    POW             reduce using rule 14 (expr2 -> expr2 MUL expr2 .)
+    RPAREN          reduce using rule 14 (expr2 -> expr2 MUL expr2 .)
+
+  ! ADD             [ shift and go to state 30 ]
+  ! SUB             [ shift and go to state 31 ]
+  ! MUL             [ shift and go to state 32 ]
+  ! DIV             [ shift and go to state 33 ]
+
+
+state 42
+
+    (17) expr2 -> expr2 DIV expr2 .
+    (10) expr2 -> expr2 . ADD expr2
+    (12) expr2 -> expr2 . SUB expr2
+    (14) expr2 -> expr2 . MUL expr2
+    (17) expr2 -> expr2 . DIV expr2
+
+    ADD             reduce using rule 17 (expr2 -> expr2 DIV expr2 .)
+    SUB             reduce using rule 17 (expr2 -> expr2 DIV expr2 .)
+    MUL             reduce using rule 17 (expr2 -> expr2 DIV expr2 .)
+    DIV             reduce using rule 17 (expr2 -> expr2 DIV expr2 .)
+    ENDL            reduce using rule 17 (expr2 -> expr2 DIV expr2 .)
+    POW             reduce using rule 17 (expr2 -> expr2 DIV expr2 .)
+    RPAREN          reduce using rule 17 (expr2 -> expr2 DIV expr2 .)
+
+  ! ADD             [ shift and go to state 30 ]
+  ! SUB             [ shift and go to state 31 ]
+  ! MUL             [ shift and go to state 32 ]
+  ! DIV             [ shift and go to state 33 ]
+
+
+state 43
+
+    (6) expr2 -> LPAREN expr2 RPAREN .
+
+    ADD             reduce using rule 6 (expr2 -> LPAREN expr2 RPAREN .)
+    SUB             reduce using rule 6 (expr2 -> LPAREN expr2 RPAREN .)
+    MUL             reduce using rule 6 (expr2 -> LPAREN expr2 RPAREN .)
+    DIV             reduce using rule 6 (expr2 -> LPAREN expr2 RPAREN .)
+    ENDL            reduce using rule 6 (expr2 -> LPAREN expr2 RPAREN .)
+    POW             reduce using rule 6 (expr2 -> LPAREN expr2 RPAREN .)
+    RPAREN          reduce using rule 6 (expr2 -> LPAREN expr2 RPAREN .)
+
+
+state 44
+
+    (8) expr2 -> SUB LPAREN expr2 . RPAREN
+    (10) expr2 -> expr2 . ADD expr2
+    (12) expr2 -> expr2 . SUB expr2
+    (14) expr2 -> expr2 . MUL expr2
+    (17) expr2 -> expr2 . DIV expr2
+
+    RPAREN          shift and go to state 45
+    ADD             shift and go to state 30
+    SUB             shift and go to state 31
+    MUL             shift and go to state 32
+    DIV             shift and go to state 33
+
+
+state 45
+
+    (8) expr2 -> SUB LPAREN expr2 RPAREN .
+
+    ADD             reduce using rule 8 (expr2 -> SUB LPAREN expr2 RPAREN .)
+    SUB             reduce using rule 8 (expr2 -> SUB LPAREN expr2 RPAREN .)
+    MUL             reduce using rule 8 (expr2 -> SUB LPAREN expr2 RPAREN .)
+    DIV             reduce using rule 8 (expr2 -> SUB LPAREN expr2 RPAREN .)
+    ENDL            reduce using rule 8 (expr2 -> SUB LPAREN expr2 RPAREN .)
+    POW             reduce using rule 8 (expr2 -> SUB LPAREN expr2 RPAREN .)
+    RPAREN          reduce using rule 8 (expr2 -> SUB LPAREN expr2 RPAREN .)
+
